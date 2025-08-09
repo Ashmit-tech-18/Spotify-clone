@@ -1,0 +1,183 @@
+/* --- NEW: Background Image with Low Opacity --- */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    background-image: url('assets/background.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 1; /* Adjust this value for more/less opacity */
+}
+
+body {
+    background-color: #121212;
+    color: white;
+    font-family: 'Helvetica Neue', sans-serif;
+    overflow-x: hidden;
+}
+
+/* --- NEW: Hover-to-Show Sidebar --- */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 80px; /* Collapsed width - just for icons */
+    z-index: 100;
+    padding: 20px 0 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    transition: width 0.35s ease-in-out; /* Smooth transition */
+    overflow-x: hidden; /* Hide text when collapsed */
+}
+
+.sidebar:hover {
+    width: 260px; /* Expanded width */
+}
+
+.sidebar .nav-link {
+    font-weight: 500;
+    color: #b3b3b3;
+    transition: color 0.2s;
+    padding: 12px 28px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.sidebar .nav-link:hover, .sidebar .nav-link.active {
+    color: #ffffff;
+}
+
+.sidebar .nav-link .bi {
+    margin-right: 20px;
+    font-size: 1.5rem;
+}
+
+.sidebar-heading {
+    padding: 10px 28px;
+    white-space: nowrap;
+}
+
+/* Hide text by default */
+.sidebar-text {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Show text on hover */
+.sidebar:hover .sidebar-text {
+    opacity: 1;
+}
+
+main {
+    background-color: transparent; /* Make main content transparent to see body background */
+    padding: 24px;
+    padding-bottom: 120px;
+    transition: margin-left 0.35s ease-in-out; /* Match sidebar transition */
+    margin-left: 80px; /* Match collapsed sidebar width */
+}
+
+/* --- NEW: Styling for Cards --- */
+.album-card {
+    background-color: rgba(24, 24, 24, 0.8); /* Slightly transparent cards */
+    backdrop-filter: blur(5px);
+    border: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.album-card:hover {
+    background-color: #282828;
+    transform: translateY(-5px);
+}
+
+.album-card .card-img-top {
+    border-radius: 8px;
+}
+
+.album-card .play-button {
+    position: absolute;
+    bottom: 90px;
+    right: 20px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.album-card:hover .play-button {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.footer {
+    border-top: 1px solid #282828;
+    background-color: rgba(18, 18, 18, 0.9) !important; /* Slightly transparent footer */
+    backdrop-filter: blur(10px);
+    height: 90px;
+}
+
+/* --- NEW: Ultra-Thin Slider Styles --- */
+ #progressBar, #volumeControl {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 0.1px; /* Super thin track 
+    background: #5e5e5e; /* Track color */
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    transition: height 0.2s ease;
+}
+
+ Make the thumb invisible by default 
+#progressBar::-webkit-slider-thumb, #volumeControl::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    background: #ffffff;
+    border-radius: 50%;
+    opacity: 0; /* Hide thumb by default */
+    transition: opacity 0.2s ease; 
+}
+
+#progressBar::-webkit-slider-runnable-track,
+#volumeControl::-webkit-slider-runnable-track {
+    background: #5e5e5e;
+    height: 3px; /* <<< YAHAN SE MOTAI BADLEIN */
+    border-radius: 10px;
+}
+
+/* Hover effects */
+#progressBar:hover::-webkit-slider-thumb,
+#volumeControl:hover::-webkit-slider-thumb {
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+}
+#progressBar:hover::-moz-range-thumb,
+#volumeControl:hover::-moz-range-thumb {
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+}
+
+/* On hover, make the track slightly thicker and show the thumb */
+#progressBar:hover, #volumeControl:hover {
+    height: 2px;
+}
+
+#progressBar:hover::-webkit-slider-thumb, #volumeControl:hover::-webkit-slider-thumb {
+    opacity: 1; /* Show thumb on hover */
+}
